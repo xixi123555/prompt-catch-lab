@@ -378,14 +378,20 @@ messages[n+2]   = user     ← 本轮提问 + 短期检索结果
 
 ## 九、怎么复现
 
-实验代码在 `prompt-cache-lab`，一条命令跑完整个矩阵：
+代码地址：**<https://github.com/xixi123555/prompt-catch-lab>**
+
+克隆下来，一条命令跑完整个矩阵：
 
 ```bash
+git clone https://github.com/xixi123555/prompt-catch-lab.git
+cd prompt-catch-lab
 pnpm install
 cp .env.example .env.local   # 填 key
 pnpm measure                 # 9 个场景 × 2 种形态
 pnpm measure --provider anthropic --scenario system-head   # 单点复测
 ```
+
+没有配置密钥时，`pnpm measure` 会在控制台要求输入（打码成 `*`，不落盘、不进 shell history），不必提前准备 `.env.local`。
 
 控制台会直接打出每次请求的输入 token、命中缓存 token、写入缓存 token、总消耗与命中率，并给出"前缀完整保留 / 部分失效 / 整段失效"的判定：
 
